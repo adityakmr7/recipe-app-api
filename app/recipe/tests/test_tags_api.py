@@ -19,6 +19,7 @@ class PublicTagsApiTests(TestCase):
     def test_login_required(self):
         #! test that login is required for retricing tags
         res = self.client.get(TAG_URL)
+        #* Error Here
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
     
 class PrivateTagsApiTests(TestCase):
@@ -54,5 +55,5 @@ class PrivateTagsApiTests(TestCase):
         res = self.client.get(TAG_URL)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(res.data), 1)
+        self.assertEqual(len(res.data), 1)  #* Error Here
         self.assertEqual(res.data[0]['name'], tag.name)
